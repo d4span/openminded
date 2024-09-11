@@ -6,5 +6,9 @@
   :dependencies [[org.clojure/clojure "1.12.0"]]
   :main ^:skip-aot openminded.core
   :target-path "target/%s"
+  :source-paths ["src"]
   :profiles {:uberjar {:aot :all
-                       :jvm-opts ["-Dclojure.compiler.direct-linking=true"]}})
+                       :jvm-opts ["-Dclojure.compiler.direct-linking=true"]}
+             :spec {:source-paths ^:replace ["src" "spec"]}
+             :test {:source-paths ^:replace ["src" "spec" "test"]
+                    :dependencies [[org.clojure/test.check "1.1.1"]]}})

@@ -1,13 +1,15 @@
 (ns openminded.test-util
   (:require [clojure.test :refer :all]
-            [clojure.spec.test.alpha :as stest]
-            [openminded.tree :as tree]
-            [openminded.tree.spec :as spec]))
+            [clojure.spec.test.alpha :as stest]))
 
-(defn test-function
-    ([sym num-tests]
-        (println "Running tests for" sym)
-        (let [result (stest/check sym {:clojure.spec.test.check/opts {:num-tests num-tests}})]
-            (println "Result: "  result)))
-    ([sym] (test-function sym 24))
-    ([a b c] (println "Too many arguments!")))
+(defn test-syms
+  [syms opts]
+  (let [result (stest/check syms opts) 
+        output (map (fn [r] [(:sym r)
+                             (-> (:clojure.spec.test.check/ret r)
+                                 :shrunk
+                                 :smallest) 
+                             #(:clojure.spec.test.check/ret r)])
+                    result)
+        failures (filter (fn [[_ _ ret]] (false? (:pass? (ret)))) output)]
+    failures))

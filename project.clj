@@ -9,6 +9,5 @@
   :source-paths ["src"]
   :profiles {:uberjar {:aot :all
                        :jvm-opts ["-Dclojure.compiler.direct-linking=true"]}
-             :spec {:source-paths ^:replace ["src" "spec"]}
-             :test {:source-paths ^:replace ["src" "spec" "test"]
+             :test {:source-paths ^:replace ["src" "test"]
                     :dependencies [[org.clojure/test.check "1.1.1"]]}})

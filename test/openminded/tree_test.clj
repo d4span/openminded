@@ -6,27 +6,35 @@
             [openminded.tree :as tree]
             [openminded.test-util :refer [test-syms]]))
 
+(def ^:private node-id (gen/simple-type-printable))
+(def ^:private node-content (gen/any))
+(def ^:private root-node (gen/tuple node-id node-content))
+
+(def ^:private descendants (gen/tuple (gen/int) node-id node-content))
+
 (def tree-gen
   (gen/fmap
-   (fn [[root steps]]
-     (loop [nodes [root]
-            node-set #{root}
-            steps-left steps
-            tree []]
-       (if (empty? steps-left)
-         tree
-         (let [[parent value children] (first steps-left)
-               parent-node (nth nodes (mod parent (count nodes)))
-               children-valid (filter #(not (contains? node-set %)) children)]
-           (recur (apply conj nodes children-valid)
-                  (apply conj node-set children-valid)
-                  (rest steps-left)
-                  (conj tree
-                        {:id parent-node :value value :children children}))))))
-   (gen/tuple
-    (gen/simple-type-printable)
-    (gen/vector
-     (gen/tuple (gen/int) (gen/any) (gen/vector (gen/simple-type-printable)))))))
+   (fn [[root children]]
+     (let [[root-id root-value] root]
+       (loop [node-map {root-id {:id root-id :value root-value :children []}}
+              children-left children]
+         (if (empty? children-left)
+           (vals node-map)
+           (let [[parent-idx child-id child-val] (first children-left)]
+             (if (node-map child-id)
+               (recur node-map (rest children-left))
+               (let [parent-id (nth (keys node-map)
+                                    (mod parent-idx (count node-map)))
+                     parent (node-map parent-id)
+                     parent-updated (assoc parent
+                                           :children (conj (:children parent) child-id))
+                     child {:id child-id :value child-val :children []}]
+                 (recur (assoc node-map
+                               parent-id parent-updated
+                               child-id child)
+                        (rest children-left)))))))))
+   (gen/tuple root-node
+              (gen/not-empty (gen/vector descendants)))))
 
 (deftest namespace-specs
   (testing "if specs are satisfied"

@@ -1,43 +1,14 @@
-
+﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Openminded.Avalonia.App", "Openminded.Avalonia.App\Openminded.Avalonia.App.csproj", "{6063F3E6-F0C9-4923-8D92-27EE86331615}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Openminded.Data", "Openminded.Data\Openminded.Data.csproj", "{18C41814-9DC4-4809-A115-176399B032C2}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Source", "Source", "{E90CD98F-06A9-4692-991D-32C7F7DAE69F}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Openminded.Data.Test", "Openminded.Data.Test\Openminded.Data.Test.csproj", "{0A197030-F5C4-4649-B5D3-75A63F22074D}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{C39C734F-07FC-46CC-811B-A4B8C0C23BAF}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
-	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{6063F3E6-F0C9-4923-8D92-27EE86331615}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{6063F3E6-F0C9-4923-8D92-27EE86331615}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{6063F3E6-F0C9-4923-8D92-27EE86331615}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{6063F3E6-F0C9-4923-8D92-27EE86331615}.Release|Any CPU.Build.0 = Release|Any CPU
-		{18C41814-9DC4-4809-A115-176399B032C2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{18C41814-9DC4-4809-A115-176399B032C2}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{18C41814-9DC4-4809-A115-176399B032C2}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{18C41814-9DC4-4809-A115-176399B032C2}.Release|Any CPU.Build.0 = Release|Any CPU
-		{0A197030-F5C4-4649-B5D3-75A63F22074D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{0A197030-F5C4-4649-B5D3-75A63F22074D}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{0A197030-F5C4-4649-B5D3-75A63F22074D}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{0A197030-F5C4-4649-B5D3-75A63F22074D}.Release|Any CPU.Build.0 = Release|Any CPU
-	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
-	EndGlobalSection
-	GlobalSection(NestedProjects) = preSolution
-		{0A197030-F5C4-4649-B5D3-75A63F22074D} = {C39C734F-07FC-46CC-811B-A4B8C0C23BAF}
-		{18C41814-9DC4-4809-A115-176399B032C2} = {E90CD98F-06A9-4692-991D-32C7F7DAE69F}
-		{6063F3E6-F0C9-4923-8D92-27EE86331615} = {E90CD98F-06A9-4692-991D-32C7F7DAE69F}
 	EndGlobalSection
 EndGlobal

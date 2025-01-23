@@ -4,12 +4,12 @@
 
 (defn test-syms
   [syms opts]
-  (let [result (stest/check syms opts) 
+  (let [result (stest/check syms opts)
         output (map (fn [r] [(:sym r)
                              (-> (:clojure.spec.test.check/ret r)
                                  :shrunk
-                                 :smallest) 
+                                 :smallest)
                              #(:clojure.spec.test.check/ret r)])
                     result)
         failures (filter (fn [[_ _ ret]] (false? (:pass? (ret)))) output)]
-    failures))
+    [output, failures]))

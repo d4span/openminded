@@ -2,14 +2,22 @@
   (:require [clojure.test :refer :all]
             [clojure.spec.test.alpha :as stest]))
 
-(defn test-syms
-  [syms opts]
-  (let [result (stest/check syms opts)
-        output (map (fn [r] [(:sym r)
-                             (-> (:clojure.spec.test.check/ret r)
-                                 :shrunk
-                                 :smallest)
-                             #(:clojure.spec.test.check/ret r)])
-                    result)
-        failures (filter (fn [[_ _ ret]] (false? (:pass? (ret)))) output)]
-    [output, failures]))
+(defn- prepare-result [result]
+  (let [passed (-> result first :clojure.spec.test.check/ret :pass?)]
+    (if-not passed
+      [passed
+       (str (-> result
+                first
+                :clojure.spec.test.check/ret
+                :shrunk
+                :result))]
+      [passed])))
+
+(defn check
+  ([syms]
+   (-> (stest/check syms)
+       prepare-result))
+
+  ([syms num-tests]
+   (-> (stest/check syms {:clojure.spec.test.check/opts {:num-tests num-tests}})
+       prepare-result)))

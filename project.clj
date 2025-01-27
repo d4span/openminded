@@ -7,8 +7,7 @@
   :main ^:skip-aot openminded.core
   :target-path "target/%s"
   :source-paths ["src"]
+  :global-vars {*warn-on-reflection* true}
   :profiles {:uberjar {:aot      :all
                        :jvm-opts ["-Dclojure.compiler.direct-linking=true"]}
-             :test    {:source-paths ^:replace ["src" "spec" "test"]}
-             :spec    {:source-paths ^:replace ["src" "spec"]
-                       :dependencies [[org.clojure/test.check "1.1.1"]]}})
+             :dev    {:dependencies [[org.clojure/test.check "1.1.1"]]}})

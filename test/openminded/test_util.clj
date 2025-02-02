@@ -1,6 +1,6 @@
 (ns openminded.test-util
-  (:require [clojure.test :refer :all]
-            [clojure.spec.test.alpha :as stest]))
+  (:require [clojure.spec.test.alpha :as stest]
+            [clojure.test :refer :all]))
 
 (defn- prepare-result [result]
   (let [passed (-> result first :clojure.spec.test.check/ret :pass?)]

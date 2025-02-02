@@ -1,4 +1,4 @@
-(ns openminded.tree
+(ns openminded.domain.tree
   (:require [clojure.spec.alpha :as s]
             [clojure.spec.gen.alpha :as gen]))
 
@@ -48,8 +48,16 @@
                      (rest (first to-check))))))))
 
 (s/fdef is-tree?
-        :args ::anything
-        :ret boolean?
-        :fn #(=
-              (s/valid? ::tree (-> % :args :arg))
-              (:ret %)))
+  :args ::anything
+  :ret boolean?
+  :fn #(=
+        (s/valid? ::tree (-> % :args :arg))
+        (:ret %)))
+
+(defn initial-tree [root]
+  [root])
+
+(s/fdef initial-tree
+        :args (s/cat :root any?)
+        :ret :openminded.domain.tree/tree
+        :fn #(= (-> % :args :root) (-> % :ret :value)))
